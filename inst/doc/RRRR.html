@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>Introduction to RRRR</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Introduction to RRRR</h1>
+
+
+
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">library</span>(RRRR)</a></code></pre></div>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>The R package <em>RRRR</em> provides methods for estimating online Robust Reduced-Rank Regression.</p>
+<p>If you use any code from the <code>RRRR</code> package in a publication, please use the following citation:</p>
+<blockquote>
+<p>Yangzhuoran Yang and Ziping Zhao (2020). RRRR: Online Robust Reduced-Rank Regression Estimation. R package version 1.0.0. <a href="https://pkg.yangzhuoranyang.com/RRRR/" class="uri">https://pkg.yangzhuoranyang.com/RRRR/</a>.</p>
+</blockquote>
+<p>This vignette aims to provide illustrations to estimate and update (Online) Reduced-Rank Regression using various methods contained in the package.</p>
+</div>
+<div id="formulation" class="section level2">
+<h2>Formulation</h2>
+<p>The formulation of the reduced-rank regression is as follow: <span class="math display">\[y = \mu +AB&#39;  x + D z+innov,\]</span> where for each realization</p>
+<ul>
+<li><span class="math inline">\(y\)</span> is a vector of dimension <span class="math inline">\(P\)</span> for the <span class="math inline">\(P\)</span> response variables,</li>
+<li><span class="math inline">\(x\)</span> is a vector of dimension <span class="math inline">\(Q\)</span> for the <span class="math inline">\(Q\)</span> explanatory variables that will be projected to reduce the rank,</li>
+<li><span class="math inline">\(z\)</span> is a vector of dimension <span class="math inline">\(R\)</span> for the <span class="math inline">\(R\)</span> explanatory variables that will not be projected,</li>
+<li><span class="math inline">\(\mu\)</span> is the constant vector of dimension <span class="math inline">\(P\)</span>,</li>
+<li><span class="math inline">\(innov\)</span> is the innovation vector of dimension <span class="math inline">\(P\)</span>,</li>
+<li><span class="math inline">\(D\)</span> is a coefficient matrix for <span class="math inline">\(z\)</span> with dimension <span class="math inline">\(P*R\)</span>,</li>
+<li><span class="math inline">\(A\)</span> is the so called exposure matrix with dimension <span class="math inline">\(P*r\)</span>, and</li>
+<li><span class="math inline">\(B\)</span> is the so called factor matrix with dimension <span class="math inline">\(Q*r\)</span>.</li>
+</ul>
+<p>The matrix resulted from <span class="math inline">\(AB&#39;\)</span> will be a reduced rank coefficient matrix with rank of <span class="math inline">\(r\)</span>. The function estimates parameters <span class="math inline">\(\mu\)</span>, <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, <span class="math inline">\(D\)</span>, and <span class="math inline">\(Sigma\)</span>, the covariance matrix of the innovation’s distribution.</p>
+</div>
+<div id="simulation" class="section level2">
+<h2>Simulation</h2>
+<p>To simulate example data that can be used to estimate reduced-rank regression, use function <code>RRR_sim</code>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">data &lt;-<span class="st"> </span><span class="kw">RRR_sim</span>()</a>
+<a class="sourceLine" id="cb2-2" title="2">data</a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="co">#&gt; Simulated Data for Reduced-Rank Regression</span></a>
+<a class="sourceLine" id="cb2-4" title="4"><span class="co">#&gt; ------------</span></a>
+<a class="sourceLine" id="cb2-5" title="5"><span class="co">#&gt; Specifications:</span></a>
+<a class="sourceLine" id="cb2-6" title="6"><span class="co">#&gt;    N    P    Q    R    r </span></a>
+<a class="sourceLine" id="cb2-7" title="7"><span class="co">#&gt; 1000    3    3    1    1 </span></a>
+<a class="sourceLine" id="cb2-8" title="8"><span class="co">#&gt;       mu        A        B        D Sigma1 Sigma2 Sigma3</span></a>
+<a class="sourceLine" id="cb2-9" title="9"><span class="co">#&gt; [1,] 0.1  1.29415 -1.13565  0.17329      1      0      0</span></a>
+<a class="sourceLine" id="cb2-10" title="10"><span class="co">#&gt; [2,] 0.1 -1.69865  0.73821  0.70581      0      1      0</span></a>
+<a class="sourceLine" id="cb2-11" title="11"><span class="co">#&gt; [3,] 0.1 -0.10884 -0.22691 -0.28797      0      0      1</span></a></code></pre></div>
+<p>A number of parameters can be specified. See <code>?RRR_sim</code>. The default arguments are set in such a way that the matrix resulted from <span class="math inline">\(AB&#39;\)</span> will be a reduced rank coefficient matrix with rank of <span class="math inline">\(r\)</span>.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">str</span>(data)</a>
+<a class="sourceLine" id="cb3-2" title="2"><span class="co">#&gt; List of 4</span></a>
+<a class="sourceLine" id="cb3-3" title="3"><span class="co">#&gt;  $ spec:List of 11</span></a>
+<a class="sourceLine" id="cb3-4" title="4"><span class="co">#&gt;   ..$ P    : num 3</span></a>
+<a class="sourceLine" id="cb3-5" title="5"><span class="co">#&gt;   ..$ N    : num 1000</span></a>
+<a class="sourceLine" id="cb3-6" title="6"><span class="co">#&gt;   ..$ Q    : num 3</span></a>
+<a class="sourceLine" id="cb3-7" title="7"><span class="co">#&gt;   ..$ R    : num 1</span></a>
+<a class="sourceLine" id="cb3-8" title="8"><span class="co">#&gt;   ..$ A    : num [1:3, 1] 1.294 -1.699 -0.109</span></a>
+<a class="sourceLine" id="cb3-9" title="9"><span class="co">#&gt;   ..$ B    : num [1:3, 1] -1.136 0.738 -0.227</span></a>
+<a class="sourceLine" id="cb3-10" title="10"><span class="co">#&gt;   ..$ mu   : num [1:3] 0.1 0.1 0.1</span></a>
+<a class="sourceLine" id="cb3-11" title="11"><span class="co">#&gt;   ..$ D    : num [1:3, 1] 0.173 0.706 -0.288</span></a>
+<a class="sourceLine" id="cb3-12" title="12"><span class="co">#&gt;   ..$ r    : num 1</span></a>
+<a class="sourceLine" id="cb3-13" title="13"><span class="co">#&gt;   ..$ Sigma: num [1:3, 1:3] 1 0 0 0 1 0 0 0 1</span></a>
+<a class="sourceLine" id="cb3-14" title="14"><span class="co">#&gt;   ..$ innov: num [1:1000, 1:3] 0.185 -0.652 0.357 -0.403 -0.836 ...</span></a>
+<a class="sourceLine" id="cb3-15" title="15"><span class="co">#&gt;  $ y   : num [1:1000, 1:3] 0.133 1.761 0.605 -0.575 -0.277 ...</span></a>
+<a class="sourceLine" id="cb3-16" title="16"><span class="co">#&gt;  $ x   : num [1:1000, 1:3] 0.5956 -1.7565 -0.148 0.0535 -0.6479 ...</span></a>
+<a class="sourceLine" id="cb3-17" title="17"><span class="co">#&gt;  $ z   : num [1:1000] -1.352 -0.555 1.297 1.219 1.203 ...</span></a>
+<a class="sourceLine" id="cb3-18" title="18"><span class="co">#&gt;  - attr(*, &quot;class&quot;)= chr [1:2] &quot;RRR_data&quot; &quot;list&quot;</span></a></code></pre></div>
+<p>The returned list of <code>RRR_sim</code> contains the input specifications and the data points <span class="math inline">\(y\)</span>, <span class="math inline">\(x\)</span> and <span class="math inline">\(z\)</span>.</p>
+</div>
+<div id="reduced-rank-regression-using-gaussian-mle-rrr" class="section level2">
+<h2>Reduced-Rank Regression using Gaussian MLE : <code>RRR</code></h2>
+<p>The Gaussian Maximum Likelihood Estimation method is described in Johansen, S. (<a href="#ref">1991</a>). This method is not robust in the sense that it assumes a Gaussian distribution for the innovations which does not take into account the heavy-tailedness of the true distribution and outliers.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">res_gmle &lt;-<span class="st"> </span><span class="kw">RRR</span>(<span class="dt">y=</span>data<span class="op">$</span>y, <span class="dt">x=</span>data<span class="op">$</span>x, <span class="dt">z =</span> data<span class="op">$</span>z)</a>
+<a class="sourceLine" id="cb4-2" title="2">res_gmle</a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="co">#&gt; Reduced-Rank Regression</span></a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="co">#&gt; ------------</span></a>
+<a class="sourceLine" id="cb4-5" title="5"><span class="co">#&gt; Specifications:</span></a>
+<a class="sourceLine" id="cb4-6" title="6"><span class="co">#&gt;    N    P    Q    R    r </span></a>
+<a class="sourceLine" id="cb4-7" title="7"><span class="co">#&gt; 1000    3    3    1    1 </span></a>
+<a class="sourceLine" id="cb4-8" title="8"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb4-9" title="9"><span class="co">#&gt; Coefficients:</span></a>
+<a class="sourceLine" id="cb4-10" title="10"><span class="co">#&gt;           mu        A        B        D   Sigma1    Sigma2   Sigma3</span></a>
+<a class="sourceLine" id="cb4-11" title="11"><span class="co">#&gt; [1,] 0.14283 -1.80866  0.81094  0.19901 2.823585  0.031573  0.46134</span></a>
+<a class="sourceLine" id="cb4-12" title="12"><span class="co">#&gt; [2,] 0.12647  2.32687 -0.57016  0.71515 0.031573  2.408873 -0.14810</span></a>
+<a class="sourceLine" id="cb4-13" title="13"><span class="co">#&gt; [3,] 0.14003  0.13427  0.13803 -0.29560 0.461341 -0.148105  2.60292</span></a></code></pre></div>
+<p>The matrix <span class="math inline">\(z\)</span> and the constant <span class="math inline">\(\mu\)</span> term are optional.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">res_gmle &lt;-<span class="st"> </span><span class="kw">RRR</span>(<span class="dt">y=</span>data<span class="op">$</span>y, <span class="dt">x=</span>data<span class="op">$</span>x, <span class="dt">z=</span>data<span class="op">$</span>z, <span class="dt">mu =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb5-2" title="2">res_gmle &lt;-<span class="st"> </span><span class="kw">RRR</span>(<span class="dt">y=</span>data<span class="op">$</span>y, <span class="dt">x=</span>data<span class="op">$</span>x, <span class="dt">z=</span><span class="ot">NULL</span>, <span class="dt">mu =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb5-3" title="3">res_gmle &lt;-<span class="st"> </span><span class="kw">RRR</span>(<span class="dt">y=</span>data<span class="op">$</span>y, <span class="dt">x=</span>data<span class="op">$</span>x, <span class="dt">z=</span><span class="ot">NULL</span>, <span class="dt">mu =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+</div>
+<div id="robust-reduced-rank-regression-using-majorisation-minimisation-rrrr" class="section level2">
+<h2>Robust Reduced-Rank Regression using Majorisation-Minimisation: <code>RRRR</code></h2>
+<p>The Majorisation-Minimisation estimation method is partly described in Zhao, Z., &amp; Palomar, D. P. (<a href="#ref">2017</a>). This method is robust in the sense that it assumes a heavy-tailed Cauchy distribution for the innovations. As before the matrix <span class="math inline">\(z\)</span> and the constant term <span class="math inline">\(\mu\)</span> are optional.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">res_mm &lt;-<span class="st"> </span><span class="kw">RRRR</span>(<span class="dt">y=</span>data<span class="op">$</span>y, <span class="dt">x=</span>data<span class="op">$</span>x, <span class="dt">z =</span> data<span class="op">$</span>z, </a>
+<a class="sourceLine" id="cb6-2" title="2">               <span class="dt">itr =</span> <span class="dv">100</span>, </a>
+<a class="sourceLine" id="cb6-3" title="3">               <span class="dt">earlystop =</span> <span class="fl">1e-4</span>)</a>
+<a class="sourceLine" id="cb6-4" title="4">res_mm</a>
+<a class="sourceLine" id="cb6-5" title="5"><span class="co">#&gt; Robust Reduced-Rank Regression</span></a>
+<a class="sourceLine" id="cb6-6" title="6"><span class="co">#&gt; ------</span></a>
+<a class="sourceLine" id="cb6-7" title="7"><span class="co">#&gt; Majorisation-Minimisation</span></a>
+<a class="sourceLine" id="cb6-8" title="8"><span class="co">#&gt; ------------</span></a>
+<a class="sourceLine" id="cb6-9" title="9"><span class="co">#&gt; Specifications:</span></a>
+<a class="sourceLine" id="cb6-10" title="10"><span class="co">#&gt;    N    P    Q    R    r </span></a>
+<a class="sourceLine" id="cb6-11" title="11"><span class="co">#&gt; 1000    3    3    1    1 </span></a>
+<a class="sourceLine" id="cb6-12" title="12"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb6-13" title="13"><span class="co">#&gt; Coefficients:</span></a>
+<a class="sourceLine" id="cb6-14" title="14"><span class="co">#&gt;            mu         A        B        D   Sigma1    Sigma2    Sigma3</span></a>
+<a class="sourceLine" id="cb6-15" title="15"><span class="co">#&gt; [1,] 0.105935 -0.897164  1.67728  0.19274 0.670717 0.0173151 0.0120546</span></a>
+<a class="sourceLine" id="cb6-16" title="16"><span class="co">#&gt; [2,] 0.054634  1.156670 -1.08446  0.75106 0.017315 0.6818725 0.0051657</span></a>
+<a class="sourceLine" id="cb6-17" title="17"><span class="co">#&gt; [3,] 0.139279  0.085833  0.34216 -0.27942 0.012055 0.0051657 0.6522998</span></a></code></pre></div>
+<p>Additional arguments that are worth noticing are <code>itr</code>, which control the maximum number of iteration, and <code>earlystop</code>, which is the criteria to stop the algorithm early. The algorithm will stop if the improvement on objective value is small than <code>earlystop</code> <span class="math inline">\(\times\ objective\_from\_last\_iteration\)</span>.</p>
+<p>This method is an iterative optimization algorithm so we can use the inbuilt <code>plot.RRRR</code> method to see the convergence plot of the algorithm.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw">plot</span>(res_mm, <span class="dt">aes_x =</span> <span class="st">&quot;iteration&quot;</span>, <span class="dt">xlog10 =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>Argument <code>aes_x</code> can set the x axis to be the number of iteration or the run time. Argument <code>xlog10</code> can indicate whether the scale of x axis is log 10 transformed.</p>
+</div>
+<div id="online-robust-reduced-rank-regression-orrrr" class="section level2">
+<h2>Online Robust Reduced-Rank Regression: <code>ORRRR</code></h2>
+<p>The description of the generic Stochastic Successive Upper-bound Minimisation method and the Sample Average Approximation can be found in Razaviyayn, M., Sanjabi, M., &amp; Luo, Z. Q. (<a href="#ref">2016</a>).</p>
+<p>There are two major estimation methods supported: * SMM: Stochastic Majorisation-Minimisation * SAA: Sample Average Approximation</p>
+<p>The algorithm is online in the sense that the data is continuously incorporated and the algorithm can update the parameters accordingly. As before the matrix <span class="math inline">\(z\)</span> and the constant term <span class="math inline">\(\mu\)</span> are optional.</p>
+<p>At each iteration of SAA, a new realisation of the parameters is achieved by solving the minimisation problem of the sample average of the desired objective function using the data currently incorporated. This can be computationally expensive when the objective function is highly nonconvex. The SMM method overcomes this difficulty by replacing the objective function by a well-chosen majorising surrogate function which can be much easier to optimise.</p>
+<div id="smm-stochastic-majorisation-minimisation" class="section level3">
+<h3>SMM: Stochastic Majorisation-Minimisation</h3>
+<p>By default the function <code>ORRRR</code> uses SMM.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">res_smm &lt;-<span class="st"> </span><span class="kw">ORRRR</span>(<span class="dt">y=</span>data<span class="op">$</span>y, <span class="dt">x=</span>data<span class="op">$</span>x, <span class="dt">z=</span>data<span class="op">$</span>z, </a>
+<a class="sourceLine" id="cb8-2" title="2">                 <span class="dt">initial_size =</span> <span class="dv">100</span>, <span class="dt">addon =</span> <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb8-3" title="3">res_smm</a>
+<a class="sourceLine" id="cb8-4" title="4"><span class="co">#&gt; Online Robust Reduced-Rank Regression</span></a>
+<a class="sourceLine" id="cb8-5" title="5"><span class="co">#&gt; ------</span></a>
+<a class="sourceLine" id="cb8-6" title="6"><span class="co">#&gt; Stochastic Majorisation-Minimisation</span></a>
+<a class="sourceLine" id="cb8-7" title="7"><span class="co">#&gt; ------------</span></a>
+<a class="sourceLine" id="cb8-8" title="8"><span class="co">#&gt; Specifications:</span></a>
+<a class="sourceLine" id="cb8-9" title="9"><span class="co">#&gt;            N            P            R            r initial_size        addon </span></a>
+<a class="sourceLine" id="cb8-10" title="10"><span class="co">#&gt;         1000            3            1            1          100           10 </span></a>
+<a class="sourceLine" id="cb8-11" title="11"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb8-12" title="12"><span class="co">#&gt; Coefficients:</span></a>
+<a class="sourceLine" id="cb8-13" title="13"><span class="co">#&gt;            mu         A        B        D   Sigma1    Sigma2    Sigma3</span></a>
+<a class="sourceLine" id="cb8-14" title="14"><span class="co">#&gt; [1,] 0.105736 -0.902290  1.66864  0.19339 0.680321 0.0179418 0.0115774</span></a>
+<a class="sourceLine" id="cb8-15" title="15"><span class="co">#&gt; [2,] 0.053315  1.163231 -1.07830  0.75037 0.017942 0.6929748 0.0062008</span></a>
+<a class="sourceLine" id="cb8-16" title="16"><span class="co">#&gt; [3,] 0.140673  0.085793  0.34028 -0.27840 0.011577 0.0062008 0.6627551</span></a></code></pre></div>
+<p>The simulated data set is of size 1000. In the above command, in the first iteration 100 realisations are used in the estimation with 10 more data points in each of the following iteration. Because of the increasing data size, the estimation will be slower the longer the algorithm run. Therefore, the estimated time left in the progress bar is not very accurate in this sense.</p>
+<p>The output from <code>ORRRR</code> can also plotted using <code>plot.RRRR</code>.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">plot</span>(res_smm)</a></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
+<div id="saa-sample-average-approximation" class="section level3">
+<h3>SAA: Sample Average Approximation</h3>
+<p>When using SAA, there are two sub solver supported in each iteration. * optim: the <code>optim</code> function from the <code>stats</code> package, and * MM: Majorisation-Minimisation method with ten subiterations by default.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">res_saa_optim &lt;-<span class="st"> </span><span class="kw">ORRRR</span>(<span class="dt">y=</span>data<span class="op">$</span>y, <span class="dt">x=</span>data<span class="op">$</span>x, <span class="dt">z=</span>data<span class="op">$</span>z,</a>
+<a class="sourceLine" id="cb10-2" title="2">                       <span class="dt">method =</span> <span class="st">&quot;SAA&quot;</span>, <span class="dt">SAAmethod =</span> <span class="st">&quot;optim&quot;</span>)</a>
+<a class="sourceLine" id="cb10-3" title="3">res_saa_mm &lt;-<span class="st"> </span><span class="kw">ORRRR</span>(<span class="dt">y=</span>data<span class="op">$</span>y, <span class="dt">x=</span>data<span class="op">$</span>x, <span class="dt">z=</span>data<span class="op">$</span>z,</a>
+<a class="sourceLine" id="cb10-4" title="4">                       <span class="dt">method =</span> <span class="st">&quot;SAA&quot;</span>, <span class="dt">SAAmethod =</span> <span class="st">&quot;MM&quot;</span>)</a></code></pre></div>
+<p><code>optim</code> is a general purpose solver which means it will be quite slow for this specific problem, especially when the number of parameters is large. Embedding majorisation-minimisation into subiteration of SAA is more like a heuristic without solid theory backing up its efficiency. Due to the time constraint we do not show the estimated result here.</p>
+</div>
+</div>
+<div id="truly-online-update.rrrr" class="section level2">
+<h2>Truly online: <code>update.RRRR</code></h2>
+<p>With the result from <code>ORRRR</code>, user can still update it with newly achieved data using function <code>update</code>. Note the result from <code>RRRR</code> can also be updated where it simply takes the result from <code>RRRR</code> as the starting point in online estimation.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">newdata &lt;-<span class="st"> </span><span class="kw">RRR_sim</span>()</a>
+<a class="sourceLine" id="cb11-2" title="2">res2_smm &lt;-<span class="st"> </span><span class="kw">update</span>(res_smm, <span class="dt">newy=</span>newdata<span class="op">$</span>y, <span class="dt">newx=</span>newdata<span class="op">$</span>x, <span class="dt">newz=</span>newdata<span class="op">$</span>z)</a>
+<a class="sourceLine" id="cb11-3" title="3">res2_smm</a>
+<a class="sourceLine" id="cb11-4" title="4"><span class="co">#&gt; Online Robust Reduced-Rank Regression</span></a>
+<a class="sourceLine" id="cb11-5" title="5"><span class="co">#&gt; ------</span></a>
+<a class="sourceLine" id="cb11-6" title="6"><span class="co">#&gt; Stochastic Majorisation-Minimisation</span></a>
+<a class="sourceLine" id="cb11-7" title="7"><span class="co">#&gt; ------------</span></a>
+<a class="sourceLine" id="cb11-8" title="8"><span class="co">#&gt; Specifications:</span></a>
+<a class="sourceLine" id="cb11-9" title="9"><span class="co">#&gt;            N            P            R            r initial_size        addon </span></a>
+<a class="sourceLine" id="cb11-10" title="10"><span class="co">#&gt;         2000            3            1            1         1010           10 </span></a>
+<a class="sourceLine" id="cb11-11" title="11"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb11-12" title="12"><span class="co">#&gt; Coefficients:</span></a>
+<a class="sourceLine" id="cb11-13" title="13"><span class="co">#&gt;            mu         A        B        D    Sigma1   Sigma2   Sigma3</span></a>
+<a class="sourceLine" id="cb11-14" title="14"><span class="co">#&gt; [1,] 0.064752 -0.677134  2.16018  0.24200  1.043789 -0.16940 0.021014</span></a>
+<a class="sourceLine" id="cb11-15" title="15"><span class="co">#&gt; [2,] 0.157154  0.367309 -0.65572  0.98647 -0.169404  2.42866 0.215916</span></a>
+<a class="sourceLine" id="cb11-16" title="16"><span class="co">#&gt; [3,] 0.112281 -0.034253  0.39545 -0.46129  0.021014  0.21592 0.868571</span></a></code></pre></div>
+<p>Without other arguments specified, <code>update</code> will just take the original specification in the model. If it applies to output of <code>RRRR</code>, then the default would be the default arguments in <code>ORRRR</code>, i.e., with <code>method</code> set to “SMM” and <code>addon</code> set to 10.</p>
+</div>
+<div id="ref" class="section level2">
+<h2>References</h2>
+<p><a href="https://www.jstor.org/stable/2938278?origin=crossref">Johansen, S{}ren. 1991. “Estimation and Hypothesis Testing of Cointegration Vectors in Gaussian Vector Autoregressive Models.” Econometrica: Journal of the Econometric Society 59 (6): 1551.</a></p>
+<p><a href="https://ieeexplore.ieee.org/abstract/document/8309093/">Z. Zhao and D. P. Palomar, “Robust maximum likelihood estimation of sparse vector error correction model,” in2017 IEEE Global Conferenceon Signal and Information Processing (GlobalSIP), pp. 913–917,IEEE, 2017.</a></p>
+<p><a href="http://link.springer.com/10.1007/s10107-016-1021-7">Razaviyayn, Meisam, Maziar Sanjabi, and Zhi Quan Luo. 2016. “A Stochastic Successive Minimization Method for Nonsmooth Nonconvex Optimization with Applications to Transceiver Design in Wireless Communication Networks.” Mathematical Programming. A Publication of the Mathematical Programming Society 157 (2): 515–45.</a></p>
+</div>
+<div id="license" class="section level2">
+<h2>License</h2>
+<p>This package is free and open source software, licensed under GPL-3</p>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
