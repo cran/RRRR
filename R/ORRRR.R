@@ -100,10 +100,11 @@ ORRRR <- function(y, x, z = NULL, mu = TRUE, r = 1,
                   initial_D = matrix(rnorm(P*R), ncol =  R),
                   initial_mu = matrix(rnorm(P)),
                   initial_Sigma = diag(P),
-                  ProgressBar = requireNamespace("dplyr"),
+                  ProgressBar = requireNamespace("lazybar"),
                   return_data = TRUE){
-  if (ProgressBar && !requireNamespace("dplyr", quietly = TRUE)) {
-    stop("Package \"dplyr\" needed for progress bar to work. Please install it.",
+
+  if (ProgressBar && !requireNamespace("lazybar", quietly = TRUE)) {
+    stop("Package \"lazybar\" needed for progress bar to work. Please install it.",
          call. = FALSE)
   }
   method <- method[[1]]
@@ -127,12 +128,27 @@ ORRRR <- function(y, x, z = NULL, mu = TRUE, r = 1,
 
   P <- ncol(y)
   Q <- ncol(x)
+  if(NCOL(initial_A) != r)
+    stop("Mismatched dimension. The column number of initial_A is not the same as r.")
+  if(NCOL(initial_B) != r)
+    stop("Mismatched dimension. The column number of initial_B is not the same as r.")
+  if(NROW(initial_A) != P)
+    stop("Mismatched dimension. The row number of initial_A is not the same as P.")
+  if(NROW(initial_mu) != P)
+    stop("Mismatched dimension. The row number (length) of initial_mu is not the same as P.")
+  if(NROW(initial_B) != Q)
+    stop("Mismatched dimension. The row number of initial_B is not the same as Q.")
   # check if z is NULL
   # add column of ones for mu
   # if SAA-MM, pass z as it is
   if(!is.null(z)){
     z <- as.matrix(z)
     R <- ncol(z)
+    if(NCOL(initial_D) != R)
+      stop("Mismatched dimension. The column number of initial_D is not the same as the column number of variable z.")
+    if(NROW(initial_D) != P)
+      stop("Mismatched dimension. The row number of initial_D is not the same as P.")
+
     if(mu){
       if(SAAmethod != "MM"){
         z <- cbind(z, 1)
@@ -209,11 +225,11 @@ ORRRR <- function(y, x, z = NULL, mu = TRUE, r = 1,
 
   # progress bar and run time
   itr <- (N-initial_size)/addon +1
-  if(ProgressBar)
-    pb <- dplyr::progress_estimated(itr)
   obj <- numeric(itr+1)
 
   runtime <- vector("list",itr+1)
+  if(ProgressBar)
+    pb <- lazybar::lazyProgressBar(itr, method = "drift")
   runtime[[1]] <- Sys.time()
   # loop
   for (k in seq_len(itr)) {

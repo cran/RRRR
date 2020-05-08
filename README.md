@@ -5,8 +5,10 @@
 
 <!-- badges: start -->
 
-[![Build
-Status](https://travis-ci.org/FinYang/RRRR.svg?branch=master)](https://travis-ci.org/FinYang/RRRR)
+[![Build\_Status](https://travis-ci.org/FinYang/RRRR.svg?branch=master)](https://travis-ci.org/FinYang/RRRR)
+[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/RRRR)](https://cran.r-project.org/package=RRRR)
+[![Monthly\_Downloads](http://cranlogs.r-pkg.org/badges/RRRR)](https://cran.r-project.org/package=RRRR)
+[![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 <!-- badges: end -->
 
 The R package *RRRR* provides methods for estimating online Robust
@@ -14,13 +16,18 @@ Reduced-Rank Regression.
 
 To cite package ‘RRRR’ in publications use:
 
-> Yangzhuoran Yang and Ziping Zhao (2020). RRRR: Online Robust
+> Yangzhuoran Fin Yang and Ziping Zhao (2020). RRRR: Online Robust
 > Reduced-Rank Regression Estimation. R package version 1.0.0.
 > <https://pkg.yangzhuoranyang.com/RRRR/>.
 
 ## Installation
 
-The **stable** version on R CRAN is coming soon.
+You can install the **stable** version on [R
+CRAN](https://CRAN.R-project.org/package=RRRR).
+
+``` r
+install.packages("RRRR")
+```
 
 You can install the **development** version from
 [Github](https://github.com/FinYang/RRRR) with:
@@ -35,8 +42,8 @@ devtools::install_github("FinYang/RRRR")
 The R package *RRRR* provides the following estimation methods.
 
 1.  Reduced-Rank Regression using Gaussian MLE: `RRR`
-2.  Robust Reduced-Rank Regression using Majorisation-Minimisation:
-    `RRRR`
+2.  Robust Reduced-Rank Regression using Cauchy distribution and
+    Majorisation-Minimisation: `RRRR`
 3.  Online Robust Reduced-Rank Regression: `ORRRR`
       - SMM: Stochastic Majorisation-Minimisation
       - SAA: Sample Average Approximation
@@ -49,6 +56,20 @@ library(RRRR)
 set.seed(2222)
 data <- RRR_sim()
 res <- ORRRR(y=data$y, x=data$x, z=data$z)
+res
+#> Online Robust Reduced-Rank Regression
+#> ------
+#> Stochastic Majorisation-Minimisation
+#> ------------
+#> Specifications:
+#>            N            P            R            r initial_size        addon 
+#>         1000            3            1            1          100           10 
+#> 
+#> Coefficients:
+#>            mu        A        B       D    Sigma1    Sigma2    Sigma3
+#> [1,] 0.078343 -0.16766  1.55325 0.20475  0.656940 -0.044872  0.050316
+#> [2,] 0.139471  0.44229  0.91983 1.13833 -0.044872  0.657402 -0.063890
+#> [3,] 0.106746  0.80182 -0.69377 1.95502  0.050316 -0.063890  0.698777
 plot(res)
 ```
 
@@ -56,8 +77,24 @@ plot(res)
 
 ``` r
 
-newdata <- RRR_sim()
-res2 <- ORRRR(y=newdata$y, x=newdata$x, z=newdata$z)
+newdata <- RRR_sim(A = data$spec$A,
+                   B = data$spec$B,
+                   D = data$spec$D)
+res2 <- update(res, newy=newdata$y, newx=newdata$x, newz=newdata$z)
+res2
+#> Online Robust Reduced-Rank Regression
+#> ------
+#> Stochastic Majorisation-Minimisation
+#> ------------
+#> Specifications:
+#>            N            P            R            r initial_size        addon 
+#>         2000            3            1            1         1010           10 
+#> 
+#> Coefficients:
+#>            mu        A        B       D    Sigma1    Sigma2    Sigma3
+#> [1,] 0.073939 -0.15981  1.52031 0.20894  0.675436 -0.021789  0.040888
+#> [2,] 0.142791  0.45099  0.96270 1.11702 -0.021789  0.679136 -0.024140
+#> [3,] 0.107647  0.81759 -0.67044 1.95708  0.040888 -0.024140  0.703949
 plot(res2)
 ```
 

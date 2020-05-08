@@ -14,7 +14,7 @@ print.RRRR <- function(x,  digits = max(3L, getOption("digits") - 2L), ...){
   cat("Specifications:\n")
   print(do.call(base::c, x$spec))
   cat("\nCoefficients:\n")
-  print.default(coef(x), digits = digits)
+  print(coef(x), digits = digits)
 }
 
 #' Plot Objective value of a Robust Reduced-Rank Regression
@@ -30,13 +30,12 @@ print.RRRR <- function(x,  digits = max(3L, getOption("digits") - 2L), ...){
 #' data <- RRR_sim()
 #' res <- RRRR(y=data$y, x=data$x, z = data$z)
 #' plot(res)
-#' @importFrom graphics plot
 #' @export
 plot.RRRR <- function(x,
                       aes_x = c("iteration", "runtime"),
                       xlog10 = TRUE, ...){
 
-  plot_data <- data.frame(runtime = x$history$runtime,
+  plot_data <- data.frame(runtime = cumsum(x$history$runtime),
                           obj = x$history$obj,
                           iteration = seq_along(x$history$obj))
   if(xlog10) plot_data$runtime[[1]] <- 0.001
