@@ -14,72 +14,103 @@
 
 <title>Introduction to RRRR</title>
 
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
 
 
-<style type="text/css">code{white-space: pre;}</style>
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
 <style type="text/css" data-origin="pandoc">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
 div.sourceCode
-  {  }
+{ }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
 </style>
 <script>
 // apply pandoc div.sourceCode style to pre.sourceCode instead
@@ -88,13 +119,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   for (var i = 0; i < sheets.length; i++) {
     if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
     try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    for (var j = 0; j < rules.length; j++) {
+    var j = 0;
+    while (j < rules.length) {
       var rule = rules[j];
       // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -102,6 +140,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 })();
 </script>
+
 
 
 
@@ -301,194 +340,282 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 
 
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">library</span>(RRRR)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RRRR)</span></code></pre></div>
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
-<p>The R package <em>RRRR</em> provides methods for estimating online Robust Reduced-Rank Regression.</p>
-<p>If you use any code from the <code>RRRR</code> package in a publication, please use the following citation:</p>
+<p>The R package <em>RRRR</em> provides methods for estimating online
+Robust Reduced-Rank Regression.</p>
+<p>If you use any code from the <code>RRRR</code> package in a
+publication, please use the following citation:</p>
 <blockquote>
-<p>Yangzhuoran Yang and Ziping Zhao (2020). RRRR: Online Robust Reduced-Rank Regression Estimation. R package version 1.0.0. <a href="https://pkg.yangzhuoranyang.com/RRRR/" class="uri">https://pkg.yangzhuoranyang.com/RRRR/</a>.</p>
+<p>Yangzhuoran Yang and Ziping Zhao (2020). RRRR: Online Robust
+Reduced-Rank Regression Estimation. R package version 1.1.0. <a href="https://pkg.yangzhuoranyang.com/RRRR/" class="uri">https://pkg.yangzhuoranyang.com/RRRR/</a>.</p>
 </blockquote>
-<p>This vignette aims to provide illustrations to estimate and update (Online) Reduced-Rank Regression using various methods contained in the package.</p>
+<p>This vignette aims to provide illustrations to estimate and update
+(Online) Reduced-Rank Regression using various methods contained in the
+package.</p>
 </div>
 <div id="formulation" class="section level2">
 <h2>Formulation</h2>
-<p>The formulation of the reduced-rank regression is as follow: <span class="math display">\[y = \mu +AB&#39;  x + D z+innov,\]</span> where for each realization</p>
+<p>The formulation of the reduced-rank regression is as follow: <span class="math display">\[y = \mu +AB&#39;  x + D z+innov,\]</span> where
+for each realization</p>
 <ul>
-<li><span class="math inline">\(y\)</span> is a vector of dimension <span class="math inline">\(P\)</span> for the <span class="math inline">\(P\)</span> response variables,</li>
-<li><span class="math inline">\(x\)</span> is a vector of dimension <span class="math inline">\(Q\)</span> for the <span class="math inline">\(Q\)</span> explanatory variables that will be projected to reduce the rank,</li>
-<li><span class="math inline">\(z\)</span> is a vector of dimension <span class="math inline">\(R\)</span> for the <span class="math inline">\(R\)</span> explanatory variables that will not be projected,</li>
-<li><span class="math inline">\(\mu\)</span> is the constant vector of dimension <span class="math inline">\(P\)</span>,</li>
-<li><span class="math inline">\(innov\)</span> is the innovation vector of dimension <span class="math inline">\(P\)</span>,</li>
-<li><span class="math inline">\(D\)</span> is a coefficient matrix for <span class="math inline">\(z\)</span> with dimension <span class="math inline">\(P*R\)</span>,</li>
-<li><span class="math inline">\(A\)</span> is the so called exposure matrix with dimension <span class="math inline">\(P*r\)</span>, and</li>
-<li><span class="math inline">\(B\)</span> is the so called factor matrix with dimension <span class="math inline">\(Q*r\)</span>.</li>
+<li><span class="math inline">\(y\)</span> is a vector of dimension
+<span class="math inline">\(P\)</span> for the <span class="math inline">\(P\)</span> response variables,</li>
+<li><span class="math inline">\(x\)</span> is a vector of dimension
+<span class="math inline">\(Q\)</span> for the <span class="math inline">\(Q\)</span> explanatory variables that will be
+projected to reduce the rank,</li>
+<li><span class="math inline">\(z\)</span> is a vector of dimension
+<span class="math inline">\(R\)</span> for the <span class="math inline">\(R\)</span> explanatory variables that will not be
+projected,</li>
+<li><span class="math inline">\(\mu\)</span> is the constant vector of
+dimension <span class="math inline">\(P\)</span>,</li>
+<li><span class="math inline">\(innov\)</span> is the innovation vector
+of dimension <span class="math inline">\(P\)</span>,</li>
+<li><span class="math inline">\(D\)</span> is a coefficient matrix for
+<span class="math inline">\(z\)</span> with dimension <span class="math inline">\(P*R\)</span>,</li>
+<li><span class="math inline">\(A\)</span> is the so called exposure
+matrix with dimension <span class="math inline">\(P*r\)</span>, and</li>
+<li><span class="math inline">\(B\)</span> is the so called factor
+matrix with dimension <span class="math inline">\(Q*r\)</span>.</li>
 </ul>
-<p>The matrix resulted from <span class="math inline">\(AB&#39;\)</span> will be a reduced rank coefficient matrix with rank of <span class="math inline">\(r\)</span>. The function estimates parameters <span class="math inline">\(\mu\)</span>, <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, <span class="math inline">\(D\)</span>, and <span class="math inline">\(Sigma\)</span>, the covariance matrix of the innovation’s distribution.</p>
+<p>The matrix resulted from <span class="math inline">\(AB&#39;\)</span>
+will be a reduced rank coefficient matrix with rank of <span class="math inline">\(r\)</span>. The function estimates parameters
+<span class="math inline">\(\mu\)</span>, <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, <span class="math inline">\(D\)</span>, and <span class="math inline">\(Sigma\)</span>, the covariance matrix of the
+innovation’s distribution.</p>
 </div>
 <div id="simulation" class="section level2">
 <h2>Simulation</h2>
-<p>To simulate example data that can be used to estimate reduced-rank regression, use function <code>RRR_sim</code>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">data &lt;-<span class="st"> </span><span class="kw">RRR_sim</span>()</a>
-<a class="sourceLine" id="cb2-2" title="2">data</a>
-<a class="sourceLine" id="cb2-3" title="3"><span class="co">#&gt; Simulated Data for Reduced-Rank Regression</span></a>
-<a class="sourceLine" id="cb2-4" title="4"><span class="co">#&gt; ------------</span></a>
-<a class="sourceLine" id="cb2-5" title="5"><span class="co">#&gt; Specifications:</span></a>
-<a class="sourceLine" id="cb2-6" title="6"><span class="co">#&gt;    N    P    Q    R    r </span></a>
-<a class="sourceLine" id="cb2-7" title="7"><span class="co">#&gt; 1000    3    3    1    1 </span></a>
-<a class="sourceLine" id="cb2-8" title="8"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb2-9" title="9"><span class="co">#&gt; Coefficients:</span></a>
-<a class="sourceLine" id="cb2-10" title="10"><span class="co">#&gt;          mu         A         B         D    Sigma1    Sigma2    Sigma3</span></a>
-<a class="sourceLine" id="cb2-11" title="11"><span class="co">#&gt; 1  0.100000 -0.741124 -2.533624  0.313055  1.000000  0.000000  0.000000</span></a>
-<a class="sourceLine" id="cb2-12" title="12"><span class="co">#&gt; 2  0.100000  0.965108 -1.360413  0.899096  0.000000  1.000000  0.000000</span></a>
-<a class="sourceLine" id="cb2-13" title="13"><span class="co">#&gt; 3  0.100000  0.086855 -0.261861 -1.067664  0.000000  0.000000  1.000000</span></a></code></pre></div>
-<p>A number of parameters can be specified. See <code>?RRR_sim</code>. The default arguments are set in such a way that the matrix resulted from <span class="math inline">\(AB&#39;\)</span> will be a reduced rank coefficient matrix with rank of <span class="math inline">\(r\)</span>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">str</span>(data)</a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="co">#&gt; List of 4</span></a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="co">#&gt;  $ spec:List of 11</span></a>
-<a class="sourceLine" id="cb3-4" title="4"><span class="co">#&gt;   ..$ P    : num 3</span></a>
-<a class="sourceLine" id="cb3-5" title="5"><span class="co">#&gt;   ..$ N    : num 1000</span></a>
-<a class="sourceLine" id="cb3-6" title="6"><span class="co">#&gt;   ..$ Q    : num 3</span></a>
-<a class="sourceLine" id="cb3-7" title="7"><span class="co">#&gt;   ..$ R    : num 1</span></a>
-<a class="sourceLine" id="cb3-8" title="8"><span class="co">#&gt;   ..$ A    : num [1:3, 1] -0.7411 0.9651 0.0869</span></a>
-<a class="sourceLine" id="cb3-9" title="9"><span class="co">#&gt;   ..$ B    : num [1:3, 1] -2.534 -1.36 -0.262</span></a>
-<a class="sourceLine" id="cb3-10" title="10"><span class="co">#&gt;   ..$ mu   : num [1:3] 0.1 0.1 0.1</span></a>
-<a class="sourceLine" id="cb3-11" title="11"><span class="co">#&gt;   ..$ D    : num [1:3, 1] 0.313 0.899 -1.068</span></a>
-<a class="sourceLine" id="cb3-12" title="12"><span class="co">#&gt;   ..$ r    : num 1</span></a>
-<a class="sourceLine" id="cb3-13" title="13"><span class="co">#&gt;   ..$ Sigma: num [1:3, 1:3] 1 0 0 0 1 0 0 0 1</span></a>
-<a class="sourceLine" id="cb3-14" title="14"><span class="co">#&gt;   ..$ innov: num [1:1000, 1:3] 1.2173 0.0473 -0.5319 -0.6484 1.1812 ...</span></a>
-<a class="sourceLine" id="cb3-15" title="15"><span class="co">#&gt;  $ y   : num [1:1000, 1:3] 0.837 -3.285 -0.456 -4.804 1.756 ...</span></a>
-<a class="sourceLine" id="cb3-16" title="16"><span class="co">#&gt;  $ x   : num [1:1000, 1:3] -0.928 -1.36 0.308 -1.466 -0.283 ...</span></a>
-<a class="sourceLine" id="cb3-17" title="17"><span class="co">#&gt;  $ z   : num [1:1000] 1.5043 -0.1134 -0.2133 -1.243 -0.0085 ...</span></a>
-<a class="sourceLine" id="cb3-18" title="18"><span class="co">#&gt;  - attr(*, &quot;class&quot;)= chr [1:2] &quot;RRR_data&quot; &quot;list&quot;</span></a></code></pre></div>
-<p>The returned list of <code>RRR_sim</code> contains the input specifications and the data points <span class="math inline">\(y\)</span>, <span class="math inline">\(x\)</span> and <span class="math inline">\(z\)</span>.</p>
+<p>To simulate example data that can be used to estimate reduced-rank
+regression, use function <code>RRR_sim</code>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">RRR_sim</span>()</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Simulated Data for Reduced-Rank Regression</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ------------</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Specifications:</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    N    P    Q    R    r </span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1000    3    3    1    1 </span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Coefficients:</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         mu        A        B        D   Sigma1   Sigma2   Sigma3</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1  0.10000  1.24991 -0.91243 -1.95318  1.00000  0.00000  0.00000</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2  0.10000 -0.64522  0.22024  1.12842  0.00000  1.00000  0.00000</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3  0.10000  0.85119 -0.32485  0.70834  0.00000  0.00000  1.00000</span></span></code></pre></div>
+<p>A number of parameters can be specified. See <code>?RRR_sim</code>.
+The default arguments are set in such a way that the matrix resulted
+from <span class="math inline">\(AB&#39;\)</span> will be a reduced rank
+coefficient matrix with rank of <span class="math inline">\(r\)</span>.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(data)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; List of 4</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ spec:List of 11</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ..$ P    : num 3</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ..$ N    : num 1000</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ..$ Q    : num 3</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ..$ R    : num 1</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ..$ A    : num [1:3, 1] 1.25 -0.645 0.851</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ..$ B    : num [1:3, 1] -0.912 0.22 -0.325</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ..$ mu   : num [1:3] 0.1 0.1 0.1</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ..$ D    : num [1:3, 1] -1.953 1.128 0.708</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ..$ r    : num 1</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ..$ Sigma: num [1:3, 1:3] 1 0 0 0 1 0 0 0 1</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ..$ innov: num [1:1000, 1:3] -0.773 -3.226 -0.254 -0.994 0.463 ...</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ y   : num [1:1000, 1:3] 0.104 -2.57 0.981 -0.989 1.513 ...</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ x   : num [1:1000, 1:3] -0.968 0.442 -0.41 0.507 -0.956 ...</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ z   : num [1:1000] 0.571 -0.279 -0.217 -0.331 -0.228 ...</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - attr(*, &quot;class&quot;)= chr [1:2] &quot;RRR_data&quot; &quot;list&quot;</span></span></code></pre></div>
+<p>The returned list of <code>RRR_sim</code> contains the input
+specifications and the data points <span class="math inline">\(y\)</span>, <span class="math inline">\(x\)</span>
+and <span class="math inline">\(z\)</span>.</p>
 </div>
 <div id="reduced-rank-regression-using-gaussian-mle-rrr" class="section level2">
 <h2>Reduced-Rank Regression using Gaussian MLE : <code>RRR</code></h2>
-<p>The Gaussian Maximum Likelihood Estimation method is described in Johansen, S. (<a href="#ref">1991</a>). This method is not robust in the sense that it assumes a Gaussian distribution for the innovations which does not take into account the heavy-tailedness of the true distribution and outliers.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">res_gmle &lt;-<span class="st"> </span><span class="kw">RRR</span>(<span class="dt">y=</span>data<span class="op">$</span>y, <span class="dt">x=</span>data<span class="op">$</span>x, <span class="dt">z =</span> data<span class="op">$</span>z)</a>
-<a class="sourceLine" id="cb4-2" title="2">res_gmle</a>
-<a class="sourceLine" id="cb4-3" title="3"><span class="co">#&gt; Reduced-Rank Regression</span></a>
-<a class="sourceLine" id="cb4-4" title="4"><span class="co">#&gt; ------------</span></a>
-<a class="sourceLine" id="cb4-5" title="5"><span class="co">#&gt; Specifications:</span></a>
-<a class="sourceLine" id="cb4-6" title="6"><span class="co">#&gt;    N    P    Q    R    r </span></a>
-<a class="sourceLine" id="cb4-7" title="7"><span class="co">#&gt; 1000    3    3    1    1 </span></a>
-<a class="sourceLine" id="cb4-8" title="8"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb4-9" title="9"><span class="co">#&gt; Coefficients:</span></a>
-<a class="sourceLine" id="cb4-10" title="10"><span class="co">#&gt;          mu         A         B         D    Sigma1    Sigma2    Sigma3</span></a>
-<a class="sourceLine" id="cb4-11" title="11"><span class="co">#&gt; 1  0.099621  2.163276  0.848105  0.274346  2.573112  0.573237 -0.215022</span></a>
-<a class="sourceLine" id="cb4-12" title="12"><span class="co">#&gt; 2  0.045403 -2.959030  0.495220  0.825019  0.573237  5.746330 -1.546488</span></a>
-<a class="sourceLine" id="cb4-13" title="13"><span class="co">#&gt; 3  0.113156 -0.208228  0.098220 -0.992187 -0.215022 -1.546488  3.704359</span></a></code></pre></div>
-<p>The matrix <span class="math inline">\(z\)</span> and the constant <span class="math inline">\(\mu\)</span> term are optional.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">res_gmle &lt;-<span class="st"> </span><span class="kw">RRR</span>(<span class="dt">y=</span>data<span class="op">$</span>y, <span class="dt">x=</span>data<span class="op">$</span>x, <span class="dt">z=</span>data<span class="op">$</span>z, <span class="dt">mu =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb5-2" title="2">res_gmle &lt;-<span class="st"> </span><span class="kw">RRR</span>(<span class="dt">y=</span>data<span class="op">$</span>y, <span class="dt">x=</span>data<span class="op">$</span>x, <span class="dt">z=</span><span class="ot">NULL</span>, <span class="dt">mu =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb5-3" title="3">res_gmle &lt;-<span class="st"> </span><span class="kw">RRR</span>(<span class="dt">y=</span>data<span class="op">$</span>y, <span class="dt">x=</span>data<span class="op">$</span>x, <span class="dt">z=</span><span class="ot">NULL</span>, <span class="dt">mu =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<p>The Gaussian Maximum Likelihood Estimation method is described in
+Johansen, S. (<a href="#ref">1991</a>). This method is not robust in the
+sense that it assumes a Gaussian distribution for the innovations which
+does not take into account the heavy-tailedness of the true distribution
+and outliers.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>res_gmle <span class="ot">&lt;-</span> <span class="fu">RRR</span>(<span class="at">y=</span>data<span class="sc">$</span>y, <span class="at">x=</span>data<span class="sc">$</span>x, <span class="at">z =</span> data<span class="sc">$</span>z)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>res_gmle</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Reduced-Rank Regression</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ------------</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Specifications:</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    N    P    Q    R    r </span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1000    3    3    1    1 </span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Coefficients:</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           mu          A          B          D     Sigma1     Sigma2     Sigma3</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1  0.2271781 -1.2632534  0.9409798 -1.8761543  2.5412669  0.0045757  0.0074556</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2  0.1116005  0.6235539 -0.2233690  1.1676535  0.0045757  2.5032066  0.1269371</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3  0.0932108 -0.8098394  0.2897232  0.7435337  0.0074556  0.1269371  2.5766221</span></span></code></pre></div>
+<p>The matrix <span class="math inline">\(z\)</span> and the constant
+<span class="math inline">\(\mu\)</span> term are optional.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>res_gmle <span class="ot">&lt;-</span> <span class="fu">RRR</span>(<span class="at">y=</span>data<span class="sc">$</span>y, <span class="at">x=</span>data<span class="sc">$</span>x, <span class="at">z=</span>data<span class="sc">$</span>z, <span class="at">mu =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>res_gmle <span class="ot">&lt;-</span> <span class="fu">RRR</span>(<span class="at">y=</span>data<span class="sc">$</span>y, <span class="at">x=</span>data<span class="sc">$</span>x, <span class="at">z=</span><span class="cn">NULL</span>, <span class="at">mu =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>res_gmle <span class="ot">&lt;-</span> <span class="fu">RRR</span>(<span class="at">y=</span>data<span class="sc">$</span>y, <span class="at">x=</span>data<span class="sc">$</span>x, <span class="at">z=</span><span class="cn">NULL</span>, <span class="at">mu =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 </div>
 <div id="robust-reduced-rank-regression-using-cauchy-distribution-and-majorisation-minimisation-rrrr" class="section level2">
-<h2>Robust Reduced-Rank Regression using Cauchy distribution and Majorisation-Minimisation: <code>RRRR</code></h2>
-<p>The Majorisation-Minimisation estimation method is partly described in Zhao, Z., &amp; Palomar, D. P. (<a href="#ref">2017</a>). This method is robust in the sense that it assumes a heavy-tailed Cauchy distribution for the innovations. As before the matrix <span class="math inline">\(z\)</span> and the constant term <span class="math inline">\(\mu\)</span> are optional.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">res_mm &lt;-<span class="st"> </span><span class="kw">RRRR</span>(<span class="dt">y=</span>data<span class="op">$</span>y, <span class="dt">x=</span>data<span class="op">$</span>x, <span class="dt">z =</span> data<span class="op">$</span>z, </a>
-<a class="sourceLine" id="cb6-2" title="2">               <span class="dt">itr =</span> <span class="dv">100</span>, </a>
-<a class="sourceLine" id="cb6-3" title="3">               <span class="dt">earlystop =</span> <span class="fl">1e-4</span>)</a>
-<a class="sourceLine" id="cb6-4" title="4">res_mm</a>
-<a class="sourceLine" id="cb6-5" title="5"><span class="co">#&gt; Robust Reduced-Rank Regression</span></a>
-<a class="sourceLine" id="cb6-6" title="6"><span class="co">#&gt; ------</span></a>
-<a class="sourceLine" id="cb6-7" title="7"><span class="co">#&gt; Majorisation-Minimisation</span></a>
-<a class="sourceLine" id="cb6-8" title="8"><span class="co">#&gt; ------------</span></a>
-<a class="sourceLine" id="cb6-9" title="9"><span class="co">#&gt; Specifications:</span></a>
-<a class="sourceLine" id="cb6-10" title="10"><span class="co">#&gt;    N    P    Q    R    r </span></a>
-<a class="sourceLine" id="cb6-11" title="11"><span class="co">#&gt; 1000    3    3    1    1 </span></a>
-<a class="sourceLine" id="cb6-12" title="12"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb6-13" title="13"><span class="co">#&gt; Coefficients:</span></a>
-<a class="sourceLine" id="cb6-14" title="14"><span class="co">#&gt;           mu          A          B          D     Sigma1     Sigma2     Sigma3</span></a>
-<a class="sourceLine" id="cb6-15" title="15"><span class="co">#&gt; 1  0.1243295  1.1155298  1.7177603  0.3285943  0.6700157  0.0083308  0.0129760</span></a>
-<a class="sourceLine" id="cb6-16" title="16"><span class="co">#&gt; 2  0.0084515 -1.4196819  0.9444727  0.9574126  0.0083308  0.7528924  0.0138218</span></a>
-<a class="sourceLine" id="cb6-17" title="17"><span class="co">#&gt; 3  0.1051765 -0.1065252  0.1882104 -1.0488185  0.0129760  0.0138218  0.7323035</span></a></code></pre></div>
-<p>Additional arguments that are worth noticing are <code>itr</code>, which control the maximum number of iteration, and <code>earlystop</code>, which is the criteria to stop the algorithm early. The algorithm will stop if the improvement on objective value is small than <code>earlystop</code> <span class="math inline">\(\times\ objective\_from\_last\_iteration\)</span>.</p>
-<p>This method is an iterative optimization algorithm so we can use the inbuilt <code>plot.RRRR</code> method to see the convergence plot of the algorithm.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw">plot</span>(res_mm, <span class="dt">aes_x =</span> <span class="st">&quot;iteration&quot;</span>, <span class="dt">xlog10 =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<p><img src="data:image/png;base64,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" /><!-- --></p>
-<p>Argument <code>aes_x</code> can set the x axis to be the number of iteration or the run time. Argument <code>xlog10</code> can indicate whether the scale of x axis is log 10 transformed.</p>
+<h2>Robust Reduced-Rank Regression using Cauchy distribution and
+Majorisation-Minimisation: <code>RRRR</code></h2>
+<p>The Majorisation-Minimisation estimation method is partly described
+in Zhao, Z., &amp; Palomar, D. P. (<a href="#ref">2017</a>). This method
+is robust in the sense that it assumes a heavy-tailed Cauchy
+distribution for the innovations. As before the matrix <span class="math inline">\(z\)</span> and the constant term <span class="math inline">\(\mu\)</span> are optional.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>res_mm <span class="ot">&lt;-</span> <span class="fu">RRRR</span>(<span class="at">y=</span>data<span class="sc">$</span>y, <span class="at">x=</span>data<span class="sc">$</span>x, <span class="at">z =</span> data<span class="sc">$</span>z, </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">itr =</span> <span class="dv">100</span>, </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">earlystop =</span> <span class="fl">1e-4</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>res_mm</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Robust Reduced-Rank Regression</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ------</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Majorisation-Minimisation</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ------------</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Specifications:</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    N    P    Q    R    r </span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1000    3    3    1    1 </span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Coefficients:</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           mu          A          B          D     Sigma1     Sigma2     Sigma3</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1  0.1587844 -0.6572206  1.8301050 -1.9307780  0.7433522 -0.0146134  0.0026712</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2  0.1061328  0.2932582 -0.4761372  1.1415869 -0.0146134  0.7926448  0.0065512</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3  0.0814476 -0.4302945  0.5777307  0.7557723  0.0026712  0.0065512  0.7738511</span></span></code></pre></div>
+<p>Additional arguments that are worth noticing are <code>itr</code>,
+which control the maximum number of iteration, and
+<code>earlystop</code>, which is the criteria to stop the algorithm
+early. The algorithm will stop if the improvement on objective value is
+small than <code>earlystop</code> <span class="math inline">\(\times\
+objective\_from\_last\_iteration\)</span>.</p>
+<p>This method is an iterative optimization algorithm so we can use the
+inbuilt <code>plot.RRRR</code> method to see the convergence plot of the
+algorithm.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(res_mm, <span class="at">aes_x =</span> <span class="st">&quot;iteration&quot;</span>, <span class="at">xlog10 =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>Argument <code>aes_x</code> can set the x axis to be the number of
+iteration or the run time. Argument <code>xlog10</code> can indicate
+whether the scale of x axis is log 10 transformed.</p>
 </div>
 <div id="online-robust-reduced-rank-regression-orrrr" class="section level2">
 <h2>Online Robust Reduced-Rank Regression: <code>ORRRR</code></h2>
-<p>The description of the generic Stochastic Successive Upper-bound Minimisation method and the Sample Average Approximation can be found in Razaviyayn, M., Sanjabi, M., &amp; Luo, Z. Q. (<a href="#ref">2016</a>).</p>
+<p>The description of the generic Stochastic Successive Upper-bound
+Minimisation method and the Sample Average Approximation can be found in
+Razaviyayn, M., Sanjabi, M., &amp; Luo, Z. Q. (<a href="#ref">2016</a>).</p>
 <p>There are two major estimation methods supported:</p>
 <ul>
 <li>SMM: Stochastic Majorisation-Minimisation</li>
 <li>SAA: Sample Average Approximation</li>
 </ul>
-<p>The algorithm is online in the sense that the data is continuously incorporated and the algorithm can update the parameters accordingly. As before the matrix <span class="math inline">\(z\)</span> and the constant term <span class="math inline">\(\mu\)</span> are optional.</p>
-<p>At each iteration of SAA, a new realisation of the parameters is achieved by solving the minimisation problem of the sample average of the desired objective function using the data currently incorporated. This can be computationally expensive when the objective function is highly nonconvex. The SMM method overcomes this difficulty by replacing the objective function by a well-chosen majorising surrogate function which can be much easier to optimise.</p>
+<p>The algorithm is online in the sense that the data is continuously
+incorporated and the algorithm can update the parameters accordingly. As
+before the matrix <span class="math inline">\(z\)</span> and the
+constant term <span class="math inline">\(\mu\)</span> are optional.</p>
+<p>At each iteration of SAA, a new realisation of the parameters is
+achieved by solving the minimisation problem of the sample average of
+the desired objective function using the data currently incorporated.
+This can be computationally expensive when the objective function is
+highly nonconvex. The SMM method overcomes this difficulty by replacing
+the objective function by a well-chosen majorising surrogate function
+which can be much easier to optimise.</p>
 <div id="smm-stochastic-majorisation-minimisation" class="section level3">
 <h3>SMM: Stochastic Majorisation-Minimisation</h3>
 <p>By default the function <code>ORRRR</code> uses SMM.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">res_smm &lt;-<span class="st"> </span><span class="kw">ORRRR</span>(<span class="dt">y=</span>data<span class="op">$</span>y, <span class="dt">x=</span>data<span class="op">$</span>x, <span class="dt">z=</span>data<span class="op">$</span>z, </a>
-<a class="sourceLine" id="cb8-2" title="2">                 <span class="dt">initial_size =</span> <span class="dv">100</span>, <span class="dt">addon =</span> <span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb8-3" title="3"><span class="co">#&gt; Loading required namespace: lazybar</span></a>
-<a class="sourceLine" id="cb8-4" title="4">res_smm</a>
-<a class="sourceLine" id="cb8-5" title="5"><span class="co">#&gt; Online Robust Reduced-Rank Regression</span></a>
-<a class="sourceLine" id="cb8-6" title="6"><span class="co">#&gt; ------</span></a>
-<a class="sourceLine" id="cb8-7" title="7"><span class="co">#&gt; Stochastic Majorisation-Minimisation</span></a>
-<a class="sourceLine" id="cb8-8" title="8"><span class="co">#&gt; ------------</span></a>
-<a class="sourceLine" id="cb8-9" title="9"><span class="co">#&gt; Specifications:</span></a>
-<a class="sourceLine" id="cb8-10" title="10"><span class="co">#&gt;            N            P            R            r initial_size        addon </span></a>
-<a class="sourceLine" id="cb8-11" title="11"><span class="co">#&gt;         1000            3            1            1          100           10 </span></a>
-<a class="sourceLine" id="cb8-12" title="12"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb8-13" title="13"><span class="co">#&gt; Coefficients:</span></a>
-<a class="sourceLine" id="cb8-14" title="14"><span class="co">#&gt;           mu          A          B          D     Sigma1     Sigma2     Sigma3</span></a>
-<a class="sourceLine" id="cb8-15" title="15"><span class="co">#&gt; 1  0.1266684  1.1252397  1.7025433  0.3306562  0.6862673  0.0081127  0.0138327</span></a>
-<a class="sourceLine" id="cb8-16" title="16"><span class="co">#&gt; 2  0.0104494 -1.4338496  0.9356531  0.9576452  0.0081127  0.7733818  0.0156449</span></a>
-<a class="sourceLine" id="cb8-17" title="17"><span class="co">#&gt; 3  0.1032553 -0.1090974  0.1870791 -1.0498457  0.0138327  0.0156449  0.7507572</span></a></code></pre></div>
-<p>The simulated data set is of size 1000. In the above command, in the first iteration 100 realisations are used in the estimation with 10 more data points in each of the following iteration. Because of the increasing data size, the estimation will be slower the longer the algorithm run. Therefore, the estimated time left in the progress bar is not very accurate in this sense.</p>
-<p>The output from <code>ORRRR</code> can also plotted using <code>plot.RRRR</code>.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">plot</span>(res_smm)</a></code></pre></div>
-<p><img src="data:image/png;base64,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" /><!-- --></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>res_smm <span class="ot">&lt;-</span> <span class="fu">ORRRR</span>(<span class="at">y=</span>data<span class="sc">$</span>y, <span class="at">x=</span>data<span class="sc">$</span>x, <span class="at">z=</span>data<span class="sc">$</span>z, </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">initial_size =</span> <span class="dv">100</span>, <span class="at">addon =</span> <span class="dv">10</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Loading required namespace: lazybar</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>res_smm</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Online Robust Reduced-Rank Regression</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ------</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Stochastic Majorisation-Minimisation</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ------------</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Specifications:</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            N            P            R            r initial_size        addon </span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         1000            3            1            1          100           10 </span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Coefficients:</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           mu          A          B          D     Sigma1     Sigma2     Sigma3</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1  0.1580173 -0.6569760  1.8274067 -1.9309594  0.7458841 -0.0141483  0.0019549</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2  0.1033638  0.2921993 -0.4738060  1.1395438 -0.0141483  0.7966697  0.0056392</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3  0.0799705 -0.4308073  0.5769531  0.7552932  0.0019549  0.0056392  0.7762973</span></span></code></pre></div>
+<p>The simulated data set is of size 1000. In the above command, in the
+first iteration 100 realisations are used in the estimation with 10 more
+data points in each of the following iteration. Because of the
+increasing data size, the estimation will be slower the longer the
+algorithm run. Therefore, the estimated time left in the progress bar is
+not very accurate in this sense.</p>
+<p>The output from <code>ORRRR</code> can also plotted using
+<code>plot.RRRR</code>.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(res_smm)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
 </div>
 <div id="saa-sample-average-approximation" class="section level3">
 <h3>SAA: Sample Average Approximation</h3>
-<p>When using SAA, there are two sub solver supported in each iteration.</p>
+<p>When using SAA, there are two sub solver supported in each
+iteration.</p>
 <ul>
-<li>optim: the <code>optim</code> function from the <code>stats</code> package, and</li>
-<li>MM: Majorisation-Minimisation method with ten subiterations by default.</li>
+<li>optim: the <code>optim</code> function from the <code>stats</code>
+package, and</li>
+<li>MM: Majorisation-Minimisation method with ten subiterations by
+default.</li>
 </ul>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">res_saa_optim &lt;-<span class="st"> </span><span class="kw">ORRRR</span>(<span class="dt">y=</span>data<span class="op">$</span>y, <span class="dt">x=</span>data<span class="op">$</span>x, <span class="dt">z=</span>data<span class="op">$</span>z,</a>
-<a class="sourceLine" id="cb10-2" title="2">                       <span class="dt">method =</span> <span class="st">&quot;SAA&quot;</span>, <span class="dt">SAAmethod =</span> <span class="st">&quot;optim&quot;</span>)</a>
-<a class="sourceLine" id="cb10-3" title="3">res_saa_mm &lt;-<span class="st"> </span><span class="kw">ORRRR</span>(<span class="dt">y=</span>data<span class="op">$</span>y, <span class="dt">x=</span>data<span class="op">$</span>x, <span class="dt">z=</span>data<span class="op">$</span>z,</a>
-<a class="sourceLine" id="cb10-4" title="4">                       <span class="dt">method =</span> <span class="st">&quot;SAA&quot;</span>, <span class="dt">SAAmethod =</span> <span class="st">&quot;MM&quot;</span>)</a></code></pre></div>
-<p><code>optim</code> is a general purpose solver which means it will be quite slow for this specific problem, especially when the number of parameters is large. Embedding majorisation-minimisation into subiteration of SAA is more like a heuristic without solid theory backing up its efficiency. Due to the time constraint we do not show the estimated result here.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>res_saa_optim <span class="ot">&lt;-</span> <span class="fu">ORRRR</span>(<span class="at">y=</span>data<span class="sc">$</span>y, <span class="at">x=</span>data<span class="sc">$</span>x, <span class="at">z=</span>data<span class="sc">$</span>z,</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">method =</span> <span class="st">&quot;SAA&quot;</span>, <span class="at">SAAmethod =</span> <span class="st">&quot;optim&quot;</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>res_saa_mm <span class="ot">&lt;-</span> <span class="fu">ORRRR</span>(<span class="at">y=</span>data<span class="sc">$</span>y, <span class="at">x=</span>data<span class="sc">$</span>x, <span class="at">z=</span>data<span class="sc">$</span>z,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">method =</span> <span class="st">&quot;SAA&quot;</span>, <span class="at">SAAmethod =</span> <span class="st">&quot;MM&quot;</span>)</span></code></pre></div>
+<p><code>optim</code> is a general purpose solver which means it will be
+quite slow for this specific problem, especially when the number of
+parameters is large. Embedding majorisation-minimisation into
+subiteration of SAA is more like a heuristic without solid theory
+backing up its efficiency. Due to the time constraint we do not show the
+estimated result here.</p>
 </div>
 </div>
 <div id="truly-online-update.rrrr" class="section level2">
 <h2>Truly online: <code>update.RRRR</code></h2>
-<p>With the result from <code>ORRRR</code>, user can still update it with newly achieved data using function <code>update</code>. Note the result from <code>RRRR</code> can also be updated where it simply takes the result from <code>RRRR</code> as the starting point in online estimation.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">newdata &lt;-<span class="st"> </span><span class="kw">RRR_sim</span>()</a>
-<a class="sourceLine" id="cb11-2" title="2">res2_smm &lt;-<span class="st"> </span><span class="kw">update</span>(res_smm, <span class="dt">newy=</span>newdata<span class="op">$</span>y, <span class="dt">newx=</span>newdata<span class="op">$</span>x, <span class="dt">newz=</span>newdata<span class="op">$</span>z)</a>
-<a class="sourceLine" id="cb11-3" title="3">res2_smm</a>
-<a class="sourceLine" id="cb11-4" title="4"><span class="co">#&gt; Online Robust Reduced-Rank Regression</span></a>
-<a class="sourceLine" id="cb11-5" title="5"><span class="co">#&gt; ------</span></a>
-<a class="sourceLine" id="cb11-6" title="6"><span class="co">#&gt; Stochastic Majorisation-Minimisation</span></a>
-<a class="sourceLine" id="cb11-7" title="7"><span class="co">#&gt; ------------</span></a>
-<a class="sourceLine" id="cb11-8" title="8"><span class="co">#&gt; Specifications:</span></a>
-<a class="sourceLine" id="cb11-9" title="9"><span class="co">#&gt;            N            P            R            r initial_size        addon </span></a>
-<a class="sourceLine" id="cb11-10" title="10"><span class="co">#&gt;         2000            3            1            1         1010           10 </span></a>
-<a class="sourceLine" id="cb11-11" title="11"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb11-12" title="12"><span class="co">#&gt; Coefficients:</span></a>
-<a class="sourceLine" id="cb11-13" title="13"><span class="co">#&gt;          mu         A         B         D    Sigma1    Sigma2    Sigma3</span></a>
-<a class="sourceLine" id="cb11-14" title="14"><span class="co">#&gt; 1  0.115843  0.491977  2.127719  0.722976  2.544548  0.106334  0.156734</span></a>
-<a class="sourceLine" id="cb11-15" title="15"><span class="co">#&gt; 2 -0.013222 -1.183080  0.751260  1.162244  0.106334  1.215185  0.284107</span></a>
-<a class="sourceLine" id="cb11-16" title="16"><span class="co">#&gt; 3  0.100806  0.069405  0.231641 -0.059730  0.156734  0.284107  2.456228</span></a></code></pre></div>
-<p>Without other arguments specified, <code>update</code> will just take the original specification in the model. If it applies to output of <code>RRRR</code>, then the default would be the default arguments in <code>ORRRR</code>, i.e., with <code>method</code> set to “SMM” and <code>addon</code> set to 10.</p>
+<p>With the result from <code>ORRRR</code>, user can still update it
+with newly achieved data using function <code>update</code>. Note the
+result from <code>RRRR</code> can also be updated where it simply takes
+the result from <code>RRRR</code> as the starting point in online
+estimation.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>newdata <span class="ot">&lt;-</span> <span class="fu">RRR_sim</span>()</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>res2_smm <span class="ot">&lt;-</span> <span class="fu">update</span>(res_smm, <span class="at">newy=</span>newdata<span class="sc">$</span>y, <span class="at">newx=</span>newdata<span class="sc">$</span>x, <span class="at">newz=</span>newdata<span class="sc">$</span>z)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>res2_smm</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Online Robust Reduced-Rank Regression</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ------</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Stochastic Majorisation-Minimisation</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ------------</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Specifications:</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            N            P            R            r initial_size        addon </span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         2000            3            1            1         1010           10 </span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Coefficients:</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          mu         A         B         D    Sigma1    Sigma2    Sigma3</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1  0.182109 -0.443200  2.098299 -0.764120  2.030435 -0.117180 -0.172408</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2  0.029384 -0.176949  0.526462  1.124432 -0.117180  1.938935 -0.686911</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3  0.115268 -0.042169  0.635905  0.452803 -0.172408 -0.686911  1.410744</span></span></code></pre></div>
+<p>Without other arguments specified, <code>update</code> will just take
+the original specification in the model. If it applies to output of
+<code>RRRR</code>, then the default would be the default arguments in
+<code>ORRRR</code>, i.e., with <code>method</code> set to “SMM” and
+<code>addon</code> set to 10.</p>
 </div>
 <div id="ref" class="section level2">
 <h2>References</h2>
-<p><a href="https://www.jstor.org/stable/2938278?origin=crossref">Johansen, S{}ren. 1991. “Estimation and Hypothesis Testing of Cointegration Vectors in Gaussian Vector Autoregressive Models.” Econometrica: Journal of the Econometric Society 59 (6): 1551.</a></p>
-<p><a href="https://ieeexplore.ieee.org/abstract/document/8309093/">Z. Zhao and D. P. Palomar, “Robust maximum likelihood estimation of sparse vector error correction model,” in2017 IEEE Global Conferenceon Signal and Information Processing (GlobalSIP), pp. 913–917,IEEE, 2017.</a></p>
-<p><a href="http://link.springer.com/10.1007/s10107-016-1021-7">Razaviyayn, Meisam, Maziar Sanjabi, and Zhi Quan Luo. 2016. “A Stochastic Successive Minimization Method for Nonsmooth Nonconvex Optimization with Applications to Transceiver Design in Wireless Communication Networks.” Mathematical Programming. A Publication of the Mathematical Programming Society 157 (2): 515–45.</a></p>
+<p><a href="https://www.jstor.org/stable/2938278?origin=crossref">Johansen,
+S{}ren. 1991. “Estimation and Hypothesis Testing of Cointegration
+Vectors in Gaussian Vector Autoregressive Models.” Econometrica: Journal
+of the Econometric Society 59 (6): 1551.</a></p>
+<p><a href="https://ieeexplore.ieee.org/abstract/document/8309093/">Z.
+Zhao and D. P. Palomar, “Robust maximum likelihood estimation of sparse
+vector error correction model,” in2017 IEEE Global Conferenceon Signal
+and Information Processing (GlobalSIP), pp. 913–917,IEEE, 2017.</a></p>
+<p><a href="https://link.springer.com/article/10.1007/s10107-016-1021-7">Razaviyayn,
+Meisam, Maziar Sanjabi, and Zhi Quan Luo. 2016. “A Stochastic Successive
+Minimization Method for Nonsmooth Nonconvex Optimization with
+Applications to Transceiver Design in Wireless Communication Networks.”
+Mathematical Programming. A Publication of the Mathematical Programming
+Society 157 (2): 515–45.</a></p>
 </div>
 <div id="license" class="section level2">
 <h2>License</h2>
-<p>This package is free and open source software, licensed under GPL-3</p>
+<p>This package is free and open source software, licensed under
+GPL-3</p>
 </div>
 
 

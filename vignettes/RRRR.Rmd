@@ -24,7 +24,7 @@ The R package *RRRR* provides methods for estimating online Robust Reduced-Rank 
 
 If you use any code from the `RRRR` package in a publication, please use the following citation: 
 
->  Yangzhuoran Yang and Ziping Zhao (2020). RRRR: Online Robust   Reduced-Rank Regression Estimation. R package version 1.0.0. https://pkg.yangzhuoranyang.com/RRRR/.
+>  Yangzhuoran Yang and Ziping Zhao (2020). RRRR: Online Robust   Reduced-Rank Regression Estimation. R package version 1.1.0. https://pkg.yangzhuoranyang.com/RRRR/.
 
 This vignette aims to provide illustrations to estimate and update (Online) Reduced-Rank Regression using various methods contained in the package.
 
@@ -184,7 +184,7 @@ Without other arguments specified, `update` will just take the original specific
 
 [Z. Zhao and D. P. Palomar, "Robust maximum likelihood estimation of sparse vector error correction model," in2017 IEEE Global Conferenceon Signal and Information Processing (GlobalSIP), pp. 913–917,IEEE, 2017.](https://ieeexplore.ieee.org/abstract/document/8309093/)
 
-[Razaviyayn, Meisam, Maziar Sanjabi, and Zhi Quan Luo. 2016. “A Stochastic Successive Minimization Method for Nonsmooth Nonconvex Optimization with Applications to Transceiver Design in Wireless Communication Networks.” Mathematical Programming. A Publication of the Mathematical Programming Society 157 (2): 515–45.](http://link.springer.com/10.1007/s10107-016-1021-7)
+[Razaviyayn, Meisam, Maziar Sanjabi, and Zhi Quan Luo. 2016. “A Stochastic Successive Minimization Method for Nonsmooth Nonconvex Optimization with Applications to Transceiver Design in Wireless Communication Networks.” Mathematical Programming. A Publication of the Mathematical Programming Society 157 (2): 515–45.](https://link.springer.com/article/10.1007/s10107-016-1021-7)
 
 ## License
 
